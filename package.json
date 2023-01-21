@@ -1,0 +1,34 @@
+{
+   "name": "@scrypted/slack",
+   "version": "0.0.1",
+   "description": "Notify Slack",
+   "author": "Scrypted",
+   "license": "Apache",
+   "scripts": {
+      "prepublish": "NODE_ENV=production scrypted-webpack",
+      "prescrypted-vscode-launch": "scrypted-webpack",
+      "scrypted-vscode-launch": "scrypted-deploy-debug",
+      "scrypted-deploy-debug": "scrypted-deploy-debug",
+      "scrypted-debug": "scrypted-debug",
+      "scrypted-deploy": "scrypted-deploy",
+      "scrypted-webpack": "scrypted-webpack"
+   },
+   "keywords": [
+      "slack",
+      "scrypted",
+      "plugin"
+   ],
+   "scrypted": {
+      "name": "Slack Notifier",
+      "type": "Device",
+      "interfaces": [
+         "DeviceProvider"
+      ]
+   },
+   "devDependencies": {
+      "@scrypted/sdk": "0.0.2"
+   },
+   "dependencies": {
+      "axios": "^0.18.0"
+   }
+}
