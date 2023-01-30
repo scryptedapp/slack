@@ -1,2 +1,4 @@
 slack-sdk==3.19.5
-aiohttp
+aiohttp==3.8.3
+--extra-index-url=https://www.piwheels.org/simple/
+--prefer-binary
