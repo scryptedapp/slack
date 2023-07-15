@@ -12,6 +12,10 @@ class SlackNotifier(ScryptedDeviceBase, Settings, Notifier):
         super().__init__(nativeId=nativeId)
         self.init_client()
 
+    def print(self, *args, **kwargs) -> None:
+        """Overrides the print() from ScryptedDeviceBase to avoid double-printing in the main plugin console."""
+        print(*args, **kwargs)
+
     def init_client(self) -> None:
         self.client = None
         if not self.slack_token:
@@ -53,11 +57,11 @@ class SlackNotifier(ScryptedDeviceBase, Settings, Notifier):
         self.storage.setItem(key, value)
         self.init_client()
 
-    async def sendNotification(self, title: str, options: dict, media: Union[str, MediaObject] = None) -> None:
+    async def sendNotification(self, title: str, options: dict, media: Union[str, MediaObject] = None, icon: Union[str, MediaObject] = None) -> None:
         if not self.client:
             self.print("Slack client not initialized, cannot send notification")
             return
-        
+
         self.print("Starting to send Slack message")
 
         body = options.get("body", "")
