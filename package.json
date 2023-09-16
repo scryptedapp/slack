@@ -27,7 +27,9 @@
       "type": "Notifier",
       "interfaces": [
          "Settings",
-         "Notifier"
+         "Notifier",
+         "DeviceProvider",
+         "DeviceCreator"
       ]
    },
    "devDependencies": {
