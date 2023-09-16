@@ -7,9 +7,9 @@
    "scripts": {
       "scrypted-setup-project": "scrypted-setup-project",
       "prescrypted-setup-project": "scrypted-package-json",
-      "build": "scrypted-webpack",
-      "prepublishOnly": "NODE_ENV=production scrypted-webpack",
-      "prescrypted-vscode-launch": "scrypted-webpack",
+      "build": "node bin/scrypted-webpack.js",
+      "prepublishOnly": "NODE_ENV=production node bin/scrypted-webpack.js",
+      "prescrypted-vscode-launch": "node bin/scrypted-webpack.js",
       "scrypted-vscode-launch": "scrypted-deploy-debug",
       "scrypted-deploy-debug": "scrypted-deploy-debug",
       "scrypted-debug": "scrypted-debug",
@@ -24,15 +24,17 @@
    ],
    "scrypted": {
       "name": "Slack Notifier Plugin",
-      "runtime": "python",
       "type": "Notifier",
       "interfaces": [
          "Settings",
          "Notifier"
       ]
    },
-   "dependencies": {},
    "devDependencies": {
-      "@scrypted/sdk": "^0.2.103"
+      "@scrypted/sdk": "^0.2.103",
+      "coffee-loader": "^4.0.0"
+   },
+   "dependencies": {
+      "@slack/web-api": "^6.9.0"
    }
 }
