@@ -44,7 +44,7 @@ class ExtraSlackNotifier extends ScryptedDeviceBase
         @onDeviceEvent ScryptedInterface.Settings, null
 
     sendNotification: (title, options, media = null, icon = null) ->
-        @parent.sendNotificationImpl @console, @channelId, { title, options, media, icon }
+        @parent.sendNotificationImpl @console, @slackChannel(), @channelId, { title, options, media, icon }
 
 class SlackNotifier extends ScryptedDeviceBase
     constructor: (nativeId) ->
@@ -104,14 +104,14 @@ class SlackNotifier extends ScryptedDeviceBase
         @onDeviceEvent ScryptedInterface.Settings, null
 
     sendNotification: (title, options, media = null, icon = null) ->
-        @sendNotificationImpl @console, @channelId, { title, options, media, icon }
+        @sendNotificationImpl @console, @slackChannel(), @channelId, { title, options, media, icon }
 
-    sendNotificationImpl: (console, channelId, scryptedOptions) ->
+    sendNotificationImpl: (console, channel, channelId, scryptedOptions) ->
         { title, options, media, icon } = scryptedOptions
         unless @client
             console.info 'Slack client not initialized, cannot send notification'
-        else unless channelId
-            console.info 'Invalid Slack channel id, cannot send message'
+        else unless channelId and channel
+            console.info 'Invalid Slack channel, cannot send message'
         else
             console.info "Starting to send Slack message"
 
@@ -133,7 +133,7 @@ class SlackNotifier extends ScryptedDeviceBase
                         request_file_info: no
                 else
                     await @client.chat.postMessage
-                        channel: @slackChannel()
+                        channel: channel
                         text: message
 
                 console.info 'Sent successfully'
