@@ -1,6 +1,6 @@
 {
    "name": "@scrypted/slack",
-   "version": "0.1.4",
+   "version": "0.1.5",
    "description": "Slack Notifier Plugin for Scrypted",
    "author": "Scrypted",
    "license": "Apache",
