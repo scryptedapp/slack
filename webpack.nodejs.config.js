@@ -12,5 +12,8 @@ webpackConfig.module.rules.push({
         },
     ],
 });
+webpackConfig.entry = {
+    main: 'src/main.coffee'
+};
 
 module.exports = webpackConfig;
